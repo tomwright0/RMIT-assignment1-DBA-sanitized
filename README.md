@@ -1,4 +1,4 @@
-# assignment1-****-classwork
+# assignment1
 
 Oracle DB based Facebook clone.
 
