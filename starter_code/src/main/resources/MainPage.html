@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Facebook-Lite</title>
+        <link rel="stylesheet" type="text/css" href="common.css">
+        <script type="text/javascript" src="main.js"></script>
+    </head>
+    <body>
+        <section class="feed">
+            <form action="/main" method="POST">
+                <textarea name="body" required placeholder="What's happening?"></textarea>
+                <p><input type="submit" value="Post"></p>
+            </form>
+            <div th:each="p : ${posts}">
+                <article th:replace="Post.html :: postView(post=${p})">
+                </article>
+            </div>
+        </section>
+        <section class="account">
+            <p><b>Hello <span th:text="${screenName}"></span></b></p>
+            <p><a href="/EditProfile.html">Edit profile</a></p>
+            <p><a href="/Delete.html">Delete account</a></p>
+        </section>
+        <section class="requests">
+            <iframe src="/Requests.html"></iframe>
+        </section>
+    </body>
+</html>

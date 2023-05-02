@@ -1,0 +1,17 @@
+<html>
+    <body>
+        <article th:fragment="postView (post)" th:data-id="${post.postId}">
+            <h3 th:text="${post.authorName}">Author name</h3>
+            <p th:text="${post.postBody}">Post body</p>
+            <button onclick="likePost(event)" th:if="!${post.userLikes}">Like (<span th:text="${post.postLikes}">0</span>)</button>
+            <button onclick="unlikePost(event)" th:if="${post.userLikes}">Unlike (<span th:text="${post.postLikes}">0</span>)</button>
+            <section class="replies" th:if="${post.isTopLevel}">
+                <textarea onkeypress="commentKeyPress(event)" placeholder="Write a reply..."></textarea>
+                <div th:each="reply : ${post.replies}">
+                    <article th:replace="Post.html :: postView(post=${reply})">
+                    </article>
+                </div>
+            </section>
+        </article>
+    </body>
+</html>
